@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  }
+}
+
+.app-drag-region {
+  -webkit-app-region: drag;
+}
+
+.app-no-drag {
+  -webkit-app-region: no-drag;
+}
+
+/* Calm Neutral Markdown Styling */
+.markdown-body h1 {
+  @apply text-xl font-bold mt-4 mb-2 text-neutral-900 dark:text-neutral-100;
+}
+.markdown-body h2 {
+  @apply text-lg font-bold mt-3.5 mb-2 text-neutral-900 dark:text-neutral-100;
+}
+.markdown-body h3 {
+  @apply text-base font-semibold mt-3 mb-1.5 text-neutral-800 dark:text-neutral-200;
+}
+.markdown-body p {
+  @apply my-2 leading-relaxed;
+}
+.markdown-body ul {
+  @apply list-disc pl-5 my-2 space-y-1;
+}
+.markdown-body ol {
+  @apply list-decimal pl-5 my-2 space-y-1;
+}
+.markdown-body code {
+  @apply px-1.5 py-0.5 rounded bg-neutral-200/80 dark:bg-neutral-800 font-mono text-[13px] text-neutral-800 dark:text-neutral-200;
+}
+.markdown-body pre {
+  @apply p-3.5 my-2.5 rounded-xl bg-neutral-900 dark:bg-neutral-950 text-neutral-100 overflow-x-auto text-xs font-mono border border-neutral-800;
+}
+.markdown-body pre code {
+  @apply bg-transparent p-0 text-neutral-100;
+}
+.markdown-body blockquote {
+  @apply pl-3.5 border-l-4 border-neutral-400 dark:border-neutral-600 italic text-neutral-600 dark:text-neutral-400 my-2.5;
+}
+.markdown-body table {
+  @apply w-full border-collapse my-3 text-xs;
+}
+.markdown-body th,
+.markdown-body td {
+  @apply border border-neutral-200 dark:border-neutral-800 px-3 py-1.5 text-left;
+}
+.markdown-body th {
+  @apply bg-neutral-100 dark:bg-neutral-800/80 font-semibold;
+}
+.markdown-body a {
+  @apply text-neutral-800 dark:text-neutral-200 underline decoration-neutral-400 hover:decoration-neutral-700 dark:hover:decoration-neutral-200;
+}
+
+/* Syntax Highlighting inside Code Blocks */
+.code-block-wrapper {
+  @apply my-3 rounded-xl overflow-hidden border border-neutral-800 bg-neutral-900 dark:bg-neutral-950 text-neutral-100 shadow-sm;
+}
+.code-block-header {
+  @apply flex items-center justify-between px-3.5 py-1.5 bg-neutral-800/90 dark:bg-neutral-900 border-b border-neutral-700/70 dark:border-neutral-800 text-[11px] font-mono text-neutral-400 select-none;
+}
+.code-block-copy-btn {
+  @apply inline-flex items-center gap-1 px-2 py-0.5 rounded-md text-[11px] font-sans font-medium text-neutral-300 hover:text-white hover:bg-neutral-700/70 dark:hover:bg-neutral-800 transition-colors cursor-pointer;
+}
+.code-block-wrapper pre {
+  @apply m-0 p-3.5 border-0 rounded-none bg-transparent overflow-x-auto text-xs font-mono leading-relaxed;
+}
+.code-block-wrapper pre code {
+  @apply bg-transparent p-0 text-neutral-100 font-mono text-xs;
+}
+
+.syn-comment {
+  color: #737c8c;
+  font-style: italic;
+}
+.syn-keyword {
+  color: #c792ea;
+  font-weight: 500;
+}
+.syn-string {
+  color: #a5d6a7;
+}
+.syn-number {
+  color: #f78c6c;
+}
+.syn-literal {
+  color: #ff9cac;
+}
+.syn-func {
+  color: #82aaff;
+}
+.syn-type {
+  color: #ffcb6b;
+}
+.syn-attr {
+  color: #89ddff;
+}
+.syn-tag {
+  color: #f07178;
+}
+.syn-decorator {
+  color: #ffd580;
+}
+.syn-diff-add {
+  color: #a5d6a7;
+  background-color: rgba(165, 214, 167, 0.12);
+  display: inline-block;
+  width: 100%;
+}
+.syn-diff-del {
+  color: #ef9a9a;
+  background-color: rgba(239, 154, 154, 0.12);
+  display: inline-block;
+  width: 100%;
+}
