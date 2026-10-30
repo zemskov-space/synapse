@@ -15,6 +15,7 @@ import {
   ArrowRight,
   ArrowLeft,
   Sparkles,
+  Volume2,
 } from 'lucide-react';
 import appIcon from '../../../assets/icons/ui-icon.png';
 import type { AppSettings, LanguageCode, OllamaModelInfo } from '../../types/chat';
@@ -39,6 +40,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
 
   const [language, setLanguage] = useState<LanguageCode>(settings.language || 'ru');
   const [theme, setTheme] = useState<'system' | 'light' | 'dark'>(settings.theme || 'system');
+  const [soundEnabled, setSoundEnabled] = useState<boolean>(settings.soundEnabled === true);
   const [ollamaHost, setOllamaHost] = useState<string>(
     settings.ollamaHost || 'http://127.0.0.1:11434'
   );
@@ -111,6 +113,7 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
         {
           language,
           theme,
+          soundEnabled,
           ollamaHost: ollamaHost.trim() || 'http://127.0.0.1:11434',
           ollamaApiKey: ollamaApiKey.trim(),
           defaultModel: chosenModel,
@@ -253,6 +256,26 @@ export const OnboardingModal: React.FC<OnboardingModalProps> = ({
                   })}
                 </div>
               </div>
+
+              <label className="p-3.5 rounded-2xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/50 flex items-center justify-between gap-4 cursor-pointer">
+                <div className="flex items-start gap-2.5">
+                  <Volume2 className="w-4 h-4 text-neutral-500 mt-0.5 flex-shrink-0" />
+                  <div>
+                    <div className="font-medium text-neutral-800 dark:text-neutral-200">
+                      {t.settings.general.soundsTitle}
+                    </div>
+                    <div className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">
+                      {t.settings.general.soundsDesc}
+                    </div>
+                  </div>
+                </div>
+                <input
+                  type="checkbox"
+                  checked={soundEnabled}
+                  onChange={(e) => setSoundEnabled(e.target.checked)}
+                  className="w-4 h-4 accent-neutral-800 dark:accent-neutral-200 cursor-pointer"
+                />
+              </label>
             </div>
           )}
 

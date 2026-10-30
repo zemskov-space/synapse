@@ -135,6 +135,7 @@ export interface AppSettings {
   keepRecentMessages: number;
   customSystemPromptAddon: string;
   enableWebTools: boolean;
+  soundEnabled: boolean;
 }
 
 export interface StreamChunkPayload {

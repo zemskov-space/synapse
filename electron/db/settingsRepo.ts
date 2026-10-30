@@ -26,6 +26,7 @@ export const DEFAULT_SETTINGS: AppSettings = {
   keepRecentMessages: 6,
   customSystemPromptAddon: '',
   enableWebTools: true,
+  soundEnabled: false,
 };
 
 export function getSettings(): AppSettings {

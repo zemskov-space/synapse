@@ -109,6 +109,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
   const [keepRecent, setKeepRecent] = useState(settings.keepRecentMessages);
   const [customPrompt, setCustomPrompt] = useState(settings.customSystemPromptAddon || '');
   const [enableWebTools, setEnableWebTools] = useState(settings.enableWebTools !== false);
+  const [soundEnabled, setSoundEnabled] = useState(settings.soundEnabled === true);
 
   useEffect(() => {
     if (isOpen && initialTab) {
@@ -127,6 +128,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
     setKeepRecent(settings.keepRecentMessages);
     setCustomPrompt(settings.customSystemPromptAddon || '');
     setEnableWebTools(settings.enableWebTools !== false);
+    setSoundEnabled(settings.soundEnabled === true);
   }, [settings, isOpen]);
 
   if (!isOpen) return null;
@@ -144,6 +146,7 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
       keepRecentMessages: Math.max(2, Math.min(20, keepRecent)),
       customSystemPromptAddon: customPrompt,
       enableWebTools,
+      soundEnabled,
     });
     onClose();
   };
@@ -292,6 +295,8 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({
               onKeepRecentChange={setKeepRecent}
               enableWebTools={enableWebTools}
               onEnableWebToolsChange={setEnableWebTools}
+              soundEnabled={soundEnabled}
+              onSoundEnabledChange={setSoundEnabled}
               models={models}
               providers={providers}
               onSubmit={handleSave}

@@ -351,6 +351,8 @@ Write densely, without filler, using clearly structured bullet points. Output ON
       notificationsTitle: 'Desktop Notifications on Response Completion',
       notificationsDesc:
         'Send a native macOS / Windows / Linux notification when the LLM finishes generating a reply',
+      soundsTitle: 'Interface sounds',
+      soundsDesc: 'Play subtle procedural sounds for buttons and controls',
       compressionTitle: 'Automatic Old Context Compression',
       compressionThreshold: 'Context window fill threshold for compression:',
       keepRecentMessages: 'Number of recent messages to keep uncompressed:',

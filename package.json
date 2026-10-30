@@ -55,6 +55,7 @@
     }
   },
   "dependencies": {
+    "@zemskov-space/harmonia": "^1.0.0",
     "lucide-react": "^0.454.0",
     "marked": "^14.1.3",
     "sql.js": "^1.12.0"

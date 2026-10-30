@@ -9,6 +9,7 @@ import {
   Globe,
   Cpu,
   Bell,
+  Volume2,
 } from 'lucide-react';
 import type {
   AiProviderConfig,
@@ -37,6 +38,8 @@ interface GeneralSettingsTabProps {
   onKeepRecentChange: (value: number) => void;
   enableWebTools: boolean;
   onEnableWebToolsChange: (value: boolean) => void;
+  soundEnabled: boolean;
+  onSoundEnabledChange: (value: boolean) => void;
   models: OllamaModelInfo[];
   providers: AiProviderConfig[];
   onSubmit: (e: React.FormEvent) => void;
@@ -61,6 +64,8 @@ export const GeneralSettingsTab: React.FC<GeneralSettingsTabProps> = ({
   onKeepRecentChange,
   enableWebTools,
   onEnableWebToolsChange,
+  soundEnabled,
+  onSoundEnabledChange,
   models,
   providers,
   onSubmit,
@@ -216,6 +221,27 @@ export const GeneralSettingsTab: React.FC<GeneralSettingsTabProps> = ({
           type="checkbox"
           checked={enableNotifications}
           onChange={(e) => onEnableNotificationsChange(e.target.checked)}
+          className="w-4 h-4 accent-neutral-800 dark:accent-neutral-200 cursor-pointer"
+        />
+      </div>
+
+      {/* UI Sounds Toggle */}
+      <div className="p-3.5 rounded-xl border border-neutral-200 dark:border-neutral-800 bg-neutral-50/70 dark:bg-neutral-950/50 flex items-center justify-between gap-4">
+        <div className="flex items-start gap-2.5">
+          <Volume2 className="w-4 h-4 text-neutral-500 mt-0.5 flex-shrink-0" />
+          <div>
+            <div className="font-medium text-neutral-800 dark:text-neutral-200">
+              {t.settings.general.soundsTitle}
+            </div>
+            <div className="text-[11px] text-neutral-500 dark:text-neutral-400 mt-0.5">
+              {t.settings.general.soundsDesc}
+            </div>
+          </div>
+        </div>
+        <input
+          type="checkbox"
+          checked={soundEnabled}
+          onChange={(e) => onSoundEnabledChange(e.target.checked)}
           className="w-4 h-4 accent-neutral-800 dark:accent-neutral-200 cursor-pointer"
         />
       </div>

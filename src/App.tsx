@@ -20,6 +20,7 @@ import { OnboardingModal } from './components/onboarding/OnboardingModal';
 import { ChatHeader } from './components/chat/ChatHeader';
 import { MessageList } from './components/chat/MessageList';
 import { ChatComposer } from './components/chat/ChatComposer';
+import { uiSoundEngine } from './utils/uiSounds';
 
 export const App: React.FC = () => {
   const [settings, setSettings] = useState<AppSettings>({
@@ -34,6 +35,7 @@ export const App: React.FC = () => {
     keepRecentMessages: 6,
     customSystemPromptAddon: '',
     enableWebTools: true,
+    soundEnabled: false,
   });
   const [isBootstrapped, setIsBootstrapped] = useState(false);
   const [systemDark, setSystemDark] = useState<boolean>(true);
@@ -89,6 +91,49 @@ export const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.lang = settings.language || 'ru';
   }, [settings.language]);
+
+  useEffect(() => {
+    uiSoundEngine.configure({ enabled: settings.soundEnabled === true });
+    if (!settings.soundEnabled) return;
+
+    const handleClick = (event: MouseEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      const button = target.closest<HTMLElement>('button, [role="button"]');
+      if (
+        !button ||
+        button.hasAttribute('disabled') ||
+        button.getAttribute('aria-disabled') === 'true'
+      ) {
+        return;
+      }
+      void uiSoundEngine.play('tap').catch(() => undefined);
+    };
+
+    const handleChange = (event: Event) => {
+      const target = event.target;
+      if (!(target instanceof HTMLInputElement || target instanceof HTMLSelectElement)) return;
+      if (target instanceof HTMLInputElement && target.type !== 'checkbox' && target.type !== 'radio') {
+        return;
+      }
+      const preset =
+        target instanceof HTMLSelectElement
+          ? 'select'
+          : target.checked
+            ? 'toggleOn'
+            : 'toggleOff';
+      void uiSoundEngine.play(preset).catch(() => undefined);
+    };
+
+    // play() unlocks the engine on this trusted interaction, as required by
+    // browser audio policies. No AudioContext is created while sounds are off.
+    document.addEventListener('click', handleClick);
+    document.addEventListener('change', handleChange);
+    return () => {
+      document.removeEventListener('click', handleClick);
+      document.removeEventListener('change', handleChange);
+    };
+  }, [settings.soundEnabled]);
 
   // Smoothly interpolate tokens/sec value
   useEffect(() => {
